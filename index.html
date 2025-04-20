@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pill Reminders</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #f0f4f8, #d9e2ec);
+      color: #333;
+    }
+    .container {
+      width: 80%;
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2d3e50;
+    }
+    a {
+      display: inline-block;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #f8f9fa;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-left: 5px solid #007BFF;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pill Reminders</h1>
+    <a href="/add">Add New Patient</a>
+    <ul>
+      {% for name, schedule in reminders %}
+        <li><strong>{{ name }}</strong>: {{ schedule }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>

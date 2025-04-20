@@ -1,0 +1,21 @@
+# oled_display.py
+from luma.core.interface.serial import i2c
+from luma.oled.device import sh1106
+from PIL import Image, ImageDraw, ImageFont
+
+serial = i2c(port=1, address=0x3C)
+device = sh1106(serial)
+
+def show_message(message, font_size=14, duration=10):
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+    image = Image.new("1", device.size)
+    draw = ImageDraw.Draw(image)
+    draw.text((5, 20), message, font=font, fill=255)
+    device.display(image)
+
+    # Show for duration seconds
+    import time
+    time.sleep(duration)
+    device.clear()
+
+

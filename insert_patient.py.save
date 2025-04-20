@@ -1,0 +1,63 @@
+import sqlite3
+
+# Connect to the database
+conn = sqlite3.connect("patients.db")
+cursor = conn.cursor()
+
+# List of patients to add
+patients = [
+    ("Alice", 65, "Female", "Paracetamol", "21:00", "Dr. John", "9876543210"),
+    ("Bob", 70, "Male", "Ibuprofen", "08:30", "Dr. Sarah", "9123456780"),
+    ("Charlie", 60, "Male", "Aspirin", "13:15", "Dr. Mike", "9988776655"),
+    ("Diana", 72, "Female", "Metformin", "18:00", "Dr. Emma", "8899001122")
+]
+
+# Insert each patient
+cursor.executemany("""
+    INSERT INTO patients (
+        name,
+        age,
+        gender,
+        medicine_name,
+        schedule,
+        doctor_name,
+        caretaker_contact
+    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+""", patients)
+
+# Commit and close
+conn.commit()
+conn.close()
+
+print("[✔] All patients added successfully.")import sqlite3
+
+# Connect to the database
+conn = sqlite3.connect("patients.db")
+cursor = conn.cursor()
+
+# List of patients to add
+patients = [
+    ("Alice", 65, "Female", "Paracetamol", "21:00", "Dr. John", "9876543210"),
+    ("Bob", 70, "Male", "Ibuprofen", "08:30", "Dr. Sarah", "9123456780"),
+    ("Charlie", 60, "Male", "Aspirin", "13:15", "Dr. Mike", "9988776655"),
+    ("Diana", 72, "Female", "Metformin", "18:00", "Dr. Emma", "8899001122")
+]
+
+# Insert each patient
+cursor.executemany("""
+    INSERT INTO patients (
+        name,
+        age,
+        gender,
+        medicine_name,
+        schedule,
+        doctor_name,
+        caretaker_contact
+    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+""", patients)
+
+# Commit and close
+conn.commit()
+conn.close()
+
+print("[✔] All patients added successfully.")

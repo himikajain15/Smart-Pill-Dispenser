@@ -1,0 +1,22 @@
+
+\
+from luma.core.interface.serial import i2c
+from luma.oled.device import sh1106
+from luma.core.render import canvas
+from PIL import ImageFont
+import time
+
+def show_message(msg, duration=10):
+    serial = i2c(port=1, address=0x3C)
+    device = sh1106(serial, width=128, height=64)
+
+    with canvas(device) as draw:
+        draw.text((0, 0), msg, fill=255)
+
+    time.sleep(duration)
+
+    # Optional: clear screen after display
+    device.clear()
+
+if __name__ == "__main__":
+    show_message("Hello from Pi!", duration=10)
